@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
-    color: "#828BC6",
-    backgroundColor: "#222655",
+    color: "#878ECA",
+    backgroundColor: "#232554",
     marginTop: "0.5em",
     fontSize: "30px",
     borderRadius: "0.3em",
@@ -42,9 +42,9 @@ const useStyles = makeStyles((theme) => ({
   paperlefttop: {
     padding: theme.spacing(2),
     textAlign: "center",
-    color: "#828BC6",
+    color: "#878ECA",
     position: "relative",
-    backgroundColor: "#222655",
+    backgroundColor: "#232554",
     marginTop: "0",
     fontSize: "30px",
     borderRadius: "0.3em",
@@ -60,9 +60,9 @@ const useStyles = makeStyles((theme) => ({
   paperleftbottom: {
     padding: theme.spacing(2),
     textAlign: "center",
-    color: "#828BC6",
+    color: "#878ECA",
     position: "relative",
-    backgroundColor: "#222655",
+    backgroundColor: "#232554",
     marginTop: "0.7em",
     fontSize: "30px",
     borderRadius: "0.3em",
@@ -79,9 +79,9 @@ const useStyles = makeStyles((theme) => ({
   paperrightlefttop: {
     padding: theme.spacing(2),
     textAlign: "center",
-    color: "#828BC6",
+    color: "#878ECA",
     position: "relative",
-    backgroundColor: "#222655",
+    backgroundColor: "#232554",
     marginTop: "0",
     fontSize: "30px",
     borderRadius: "0.3em",
@@ -98,9 +98,9 @@ const useStyles = makeStyles((theme) => ({
   paperrightleftbottom: {
     padding: theme.spacing(2),
     textAlign: "center",
-    color: "#828BC6",
+    color: "#878ECA",
     position: "relative",
-    backgroundColor: "#222655",
+    backgroundColor: "#232554",
     marginTop: "0",
     fontSize: "30px",
     borderRadius: "0.3em",
@@ -117,9 +117,9 @@ const useStyles = makeStyles((theme) => ({
   paperrightright: {
     padding: theme.spacing(2),
     textAlign: "center",
-    color: "#828BC6",
+    color: "#878ECA",
     position: "relative",
-    backgroundColor: "#222655",
+    backgroundColor: "#232554",
     marginTop: "0",
     fontSize: "30px",
     borderRadius: "0.3em",
@@ -136,9 +136,9 @@ const useStyles = makeStyles((theme) => ({
   papermidmid: {
     padding: theme.spacing(2),
     textAlign: "center",
-    color: "#828BC6",
+    color: "#878ECA",
     position: "relative",
-    backgroundColor: "#222655",
+    backgroundColor: "#232554",
     marginTop: "0",
     fontSize: "30px",
     borderRadius: "0.3em",
@@ -153,9 +153,9 @@ const useStyles = makeStyles((theme) => ({
   paperBottom: {
     padding: theme.spacing(0.5),
     textAlign: "center",
-    color: "#828BC6",
+    color: "#878ECA",
     position: "relative",
-    backgroundColor: "#222655",
+    backgroundColor: "#232554",
     marginTop: "0",
     marginBottom: "0",
 
@@ -173,9 +173,9 @@ const useStyles = makeStyles((theme) => ({
   paper2: {
     padding: theme.spacing(2),
     textAlign: "center",
-    color: "#828BC6",
+    color: "#878ECA",
     position: "relative",
-    backgroundColor: "#222655",
+    backgroundColor: "#232554",
     marginTop: "0",
     fontSize: "30px",
     borderRadius: "0.3em",
@@ -191,9 +191,9 @@ const useStyles = makeStyles((theme) => ({
   paper3: {
     padding: theme.spacing(2),
     textAlign: "center",
-    color: "#828BC6",
+    color: "#878ECA",
     position: "relative",
-    backgroundColor: "#222655",
+    backgroundColor: "#232554",
     marginTop: "0",
     fontSize: "30px",
     borderRadius: "0.3em",
@@ -209,9 +209,9 @@ const useStyles = makeStyles((theme) => ({
   paper4: {
     padding: theme.spacing(2),
     textAlign: "center",
-    color: "#828BC6",
+    color: "#878ECA",
     position: "relative",
-    backgroundColor: "#222655",
+    backgroundColor: "#232554",
     marginTop: "0",
     fontSize: "30px",
     borderRadius: "0.3em",
@@ -234,7 +234,7 @@ function Dashboard() {
       <CssBaseline />
       <Container
         maxWidth="xl"
-        style={{ backgroundColor: "#1B1F44", height: "100vh" }}
+        style={{ backgroundColor: "#1C1E43", height: "100vh" }}
       >
         <div className={classes.root}>
           <Grid container spacing={2}>
