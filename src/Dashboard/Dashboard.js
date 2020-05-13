@@ -8,7 +8,8 @@ import Grid from "@material-ui/core/Grid";
 // import { shadows } from '@material-ui/system';
 import Box from "@material-ui/core/Box";
 import "./Dashboard.css";
-// import leftPane from "./leftPane";
+// import 'react-perfect-scrollbar/dist/css/styles.css';
+import PerfectScrollbar from 'react-perfect-scrollbar'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -229,7 +230,9 @@ function Dashboard() {
               >
                 <Paper className={classes.paperleftbottom}>
                   Top Oil Producers{" "}
-                  <div className="maintable scroll">
+                  {/* <div className="maintable scroll"> */}
+                  <PerfectScrollbar className="maintable" >
+                    <div>
                     <div className="table">
                       <div className="left_col">Country 1</div>
                       <div className="right_col">5,600,200</div>
@@ -274,7 +277,9 @@ function Dashboard() {
                       <div className="left_col">Country 1</div>
                       <div className="right_col">5,600,200</div>
                     </div>
-                  </div>
+                    </div>
+                    </PerfectScrollbar>
+                  {/* </div> */}
                 </Paper>
               </Box>
             </Grid>

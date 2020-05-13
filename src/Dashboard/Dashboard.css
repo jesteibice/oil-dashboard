@@ -36,7 +36,7 @@
 }
 
 .maintable {
-  overflow: auto;
+  overflow: none;
   position: relative;
   max-height: 38vh;
   top: 1.2em;
@@ -84,26 +84,16 @@
 }
 
 
-.maintable::-webkit-scrollbar {
+/* .maintable::-webkit-scrollbar {
     width: 3px;
     background-color: #F5F5F5;
-} 
-
-
+}  */
   
-  /* .scroll {
-    width: 20px;
-    height: 200px;
-    overflow: auto;
-    float: left;
-    margin: 0 10px;
+  /* * {
+    scrollbar-width: thin;
+    scrollbar-color: white #878ECA;
   }
-  
-  .content {
-    height: 500px;
-  } */
 
-  
   .scroll::-webkit-scrollbar {
     width: 1px;
   }
@@ -114,57 +104,127 @@
    
   .scroll::-webkit-scrollbar-thumb {
     background: white; 
+  } */
+
+
+  /*
+ * Container style
+ */
+.ps {
+  overflow: hidden !important;
+  overflow-anchor: none;
+  -ms-overflow-style: none;
+  touch-action: auto;
+  -ms-touch-action: auto;
+}
+
+/*
+ * Scrollbar rail styles
+ */
+.ps__rail-x {
+  display: none;
+  opacity: 0;
+  transition: background-color .2s linear, opacity .2s linear;
+  -webkit-transition: background-color .2s linear, opacity .2s linear;
+  height: 15px;
+  /* there must be 'bottom' or 'top' for ps__rail-x */
+  bottom: 0px;
+  /* please don't change 'position' */
+  position: absolute;
+}
+
+.ps__rail-y {
+  display: none;
+  opacity: 0;
+  transition: background-color .2s linear, opacity .2s linear;
+  -webkit-transition: background-color .2s linear, opacity .2s linear;
+  width: 15px;
+  /* there must be 'right' or 'left' for ps__rail-y */
+  right: 0;
+  /* please don't change 'position' */
+  position: absolute;
+}
+
+.ps--active-x > .ps__rail-x,
+.ps--active-y > .ps__rail-y {
+  display: block;
+  background-color: transparent;
+}
+
+.ps:hover > .ps__rail-x,
+.ps:hover > .ps__rail-y,
+.ps--focus > .ps__rail-x,
+.ps--focus > .ps__rail-y,
+.ps--scrolling-x > .ps__rail-x,
+.ps--scrolling-y > .ps__rail-y {
+  opacity: 0.6;
+}
+
+.ps .ps__rail-x:hover,
+.ps .ps__rail-y:hover,
+.ps .ps__rail-x:focus,
+.ps .ps__rail-y:focus,
+.ps .ps__rail-x.ps--clicking,
+.ps .ps__rail-y.ps--clicking {
+  background: none;
+  opacity: 0.9;
+}
+
+/*
+ * Scrollbar thumb styles
+ */
+.ps__thumb-x {
+  background-color: #878ECA;
+  border-radius: 6px;
+  transition: background-color .2s linear, height .2s ease-in-out;
+  -webkit-transition: background-color .2s linear, height .2s ease-in-out;
+  height: 6px;
+  /* there must be 'bottom' for ps__thumb-x */
+  bottom: 2px;
+  /* please don't change 'position' */
+  position: absolute;
+}
+
+.ps__thumb-y {
+  background-color: #878ECA;
+  border-radius: 6px;
+  transition: background-color .2s linear, width .2s ease-in-out;
+  -webkit-transition: background-color .2s linear, width .2s ease-in-out;
+  width: 6px;
+  /* there must be 'right' for ps__thumb-y */
+  right: 2px;
+  /* please don't change 'position' */
+  position: absolute;
+}
+
+.ps__rail-x:hover > .ps__thumb-x,
+.ps__rail-x:focus > .ps__thumb-x,
+.ps__rail-x.ps--clicking .ps__thumb-x {
+  background-color: white;
+  height: 11px;
+}
+
+.ps__rail-y:hover > .ps__thumb-y,
+.ps__rail-y:focus > .ps__thumb-y,
+.ps__rail-y.ps--clicking .ps__thumb-y {
+  background-color: white;
+  width: 11px;
+}
+
+/* MS supports */
+@supports (-ms-overflow-style: none) {
+  .ps {
+    overflow: auto !important;
   }
-  
-  /* .scroll2::-webkit-scrollbar {
-    width: 5px;
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .ps {
+    overflow: auto !important;
   }
-   
-  .scroll2::-webkit-scrollbar-thumb {
-    background: #666; 
-  }
-  
-  .scroll3::-webkit-scrollbar {
-    width: 5px;
-  }
-   
-  .scroll3::-webkit-scrollbar-thumb {
-    background: #ddd; 
-  }
-  
-  .scroll3::-webkit-scrollbar-track {
-    background: #666; 
-  }
-  
-  .scroll4::-webkit-scrollbar {
-    width: 10px;
-  }
-   
-  .scroll4::-webkit-scrollbar-thumb {
-    background: #666;
-    border-radius: 20px;
-  }
-  
-  .scroll4::-webkit-scrollbar-track {
-    background: #ddd;
-    border-radius: 20px;
-  }
-  
-  .scroll5::-webkit-scrollbar {
-    width: 15px;
-  }
-   
-  .scroll5::-webkit-scrollbar-thumb {
-    background: #666;
-  }
-  
-  .scroll5::-webkit-scrollbar-track {
-    background: #ddd;
-  }
-  
-  .scroll5::-webkit-scrollbar-button {
-    background: #666;
-    height: 15px;
-    border-radius: 50%;
-  }
-   */
+}
+.scrollbar-container {
+  position: relative;
+  height: 100%; }
+
+/*# sourceMappingURL=styles.css.map*/
