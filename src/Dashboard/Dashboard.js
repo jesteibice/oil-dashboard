@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import "./Dashboard.css";
 // import 'react-perfect-scrollbar/dist/css/styles.css';
-import PerfectScrollbar from 'react-perfect-scrollbar'
+import PerfectScrollbar from "react-perfect-scrollbar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -130,16 +130,20 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     backgroundColor: "#232554",
     marginTop: "0",
-    fontSize: "30px",
     borderRadius: "0.3em",
-    fontWeight: 350,
-    letterSpacing: "0.17px",
+    // letterSpacing: "0.17px",
     lineHeight: "44px",
     marginLeft: 0,
     marginRight: 0,
     marginBottom: "0.6em",
     // flexGrow: 5,
     minHeight: "17vh",
+    fontFamily: "Avenir Next",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "21px",
+    lineHeight: "25px",
+    letterSpacing: "0.02em",
   },
   paper3: {
     padding: theme.spacing(2),
@@ -216,7 +220,7 @@ function Dashboard() {
                 clone
               >
                 <Paper className={classes.paperlefttop}>
-                  World Oil Production <label className="bigwhite">17.87</label>
+                  <div>World Oil Production</div><label className="bigwhite">17.87</label>
                   <label className="underbig"> million barrel per day</label>
                 </Paper>
               </Box>
@@ -229,56 +233,55 @@ function Dashboard() {
                 clone
               >
                 <Paper className={classes.paperleftbottom}>
-                  Top Oil Producers{" "}
-                  {/* <div className="maintable scroll"> */}
-                  <PerfectScrollbar className="maintable" >
+                  Top Oil Producers {/* <div className="maintable scroll"> */}
+                  <PerfectScrollbar className="maintable">
                     <div>
-                    <div className="table">
-                      <div className="left_col">Country 1</div>
-                      <div className="right_col">5,600,200</div>
+                      <div className="table">
+                        <div className="left_col">Country 1</div>
+                        <div className="right_col">5,600,200</div>
+                      </div>
+                      <div className="table">
+                        <div className="left_col">Country 1</div>
+                        <div className="right_col">5,600,200</div>
+                      </div>{" "}
+                      <div className="table">
+                        <div className="left_col">Country 1</div>
+                        <div className="right_col">5,600,200</div>
+                      </div>{" "}
+                      <div className="table">
+                        <div className="left_col">Country 1</div>
+                        <div className="right_col">5,600,200</div>
+                      </div>{" "}
+                      <div className="table">
+                        <div className="left_col">Country 1</div>
+                        <div className="right_col">5,600,200</div>
+                      </div>{" "}
+                      <div className="table">
+                        <div className="left_col">Country 1</div>
+                        <div className="right_col">5,600,200</div>
+                      </div>{" "}
+                      <div className="table">
+                        <div className="left_col">Country 1</div>
+                        <div className="right_col">5,600,200</div>
+                      </div>{" "}
+                      <div className="table">
+                        <div className="left_col">Country 1</div>
+                        <div className="right_col">5,600,200</div>
+                      </div>{" "}
+                      <div className="table">
+                        <div className="left_col">Country 1</div>
+                        <div className="right_col">5,600,200</div>
+                      </div>{" "}
+                      <div className="table">
+                        <div className="left_col">Country 1</div>
+                        <div className="right_col">5,600,200</div>
+                      </div>{" "}
+                      <div className="table">
+                        <div className="left_col">Country 1</div>
+                        <div className="right_col">5,600,200</div>
+                      </div>
                     </div>
-                    <div className="table">
-                      <div className="left_col">Country 1</div>
-                      <div className="right_col">5,600,200</div>
-                    </div>{" "}
-                    <div className="table">
-                      <div className="left_col">Country 1</div>
-                      <div className="right_col">5,600,200</div>
-                    </div>{" "}
-                    <div className="table">
-                      <div className="left_col">Country 1</div>
-                      <div className="right_col">5,600,200</div>
-                    </div>{" "}
-                    <div className="table">
-                      <div className="left_col">Country 1</div>
-                      <div className="right_col">5,600,200</div>
-                    </div>{" "}
-                    <div className="table">
-                      <div className="left_col">Country 1</div>
-                      <div className="right_col">5,600,200</div>
-                    </div>{" "}
-                    <div className="table">
-                      <div className="left_col">Country 1</div>
-                      <div className="right_col">5,600,200</div>
-                    </div>{" "}
-                    <div className="table">
-                      <div className="left_col">Country 1</div>
-                      <div className="right_col">5,600,200</div>
-                    </div>{" "}
-                    <div className="table">
-                      <div className="left_col">Country 1</div>
-                      <div className="right_col">5,600,200</div>
-                    </div>{" "}
-                    <div className="table">
-                      <div className="left_col">Country 1</div>
-                      <div className="right_col">5,600,200</div>
-                    </div>{" "}
-                    <div className="table">
-                      <div className="left_col">Country 1</div>
-                      <div className="right_col">5,600,200</div>
-                    </div>
-                    </div>
-                    </PerfectScrollbar>
+                  </PerfectScrollbar>
                   {/* </div> */}
                 </Paper>
               </Box>
@@ -296,7 +299,9 @@ function Dashboard() {
               >
                 {" "}
                 <Grid item xs={8}>
-                  <Paper className={classes.paper2}>xs=12</Paper>
+                  <Paper className={classes.paper2}>
+                    World Oil Consumption
+                  </Paper>
                   <Paper className={classes.paper3}>xs=12</Paper>
                 </Grid>
                 <Grid item xs={4}>

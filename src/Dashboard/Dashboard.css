@@ -83,33 +83,6 @@
   color: #e7e7e7;
 }
 
-
-/* .maintable::-webkit-scrollbar {
-    width: 3px;
-    background-color: #F5F5F5;
-}  */
-  
-  /* * {
-    scrollbar-width: thin;
-    scrollbar-color: white #878ECA;
-  }
-
-  .scroll::-webkit-scrollbar {
-    width: 1px;
-  }
-   
-  .scroll::-webkit-scrollbar-track {
-    background: #878ECA;
-  }
-   
-  .scroll::-webkit-scrollbar-thumb {
-    background: white; 
-  } */
-
-
-  /*
- * Container style
- */
 .ps {
   overflow: hidden !important;
   overflow-anchor: none;
