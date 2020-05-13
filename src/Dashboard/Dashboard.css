@@ -36,7 +36,7 @@
 }
 
 .maintable {
-  overflow: scroll;
+  overflow: auto;
   position: relative;
   max-height: 38vh;
   top: 1.2em;
@@ -91,7 +91,7 @@
 
 
   
-  .scroll {
+  /* .scroll {
     width: 20px;
     height: 200px;
     overflow: auto;
@@ -101,22 +101,22 @@
   
   .content {
     height: 500px;
-  }
+  } */
 
   
-  .scroll1::-webkit-scrollbar {
-    width: 5px;
+  .scroll::-webkit-scrollbar {
+    width: 1px;
   }
    
-  .scroll1::-webkit-scrollbar-track {
-    background: #ddd;
+  .scroll::-webkit-scrollbar-track {
+    background: #878ECA;
   }
    
-  .scroll1::-webkit-scrollbar-thumb {
-    background: #666; 
+  .scroll::-webkit-scrollbar-thumb {
+    background: white; 
   }
   
-  .scroll2::-webkit-scrollbar {
+  /* .scroll2::-webkit-scrollbar {
     width: 5px;
   }
    
@@ -167,4 +167,4 @@
     height: 15px;
     border-radius: 50%;
   }
-  
+   */

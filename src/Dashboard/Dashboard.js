@@ -229,7 +229,7 @@ function Dashboard() {
               >
                 <Paper className={classes.paperleftbottom}>
                   Top Oil Producers{" "}
-                  <div className="maintable">
+                  <div className="maintable scroll">
                     <div className="table">
                       <div className="left_col">Country 1</div>
                       <div className="right_col">5,600,200</div>
