@@ -1,0 +1,83 @@
+/* public/fonts/Metropolis-Regular.otf */
+@font-face {
+  font-family: "Avenir Next";
+  src: url("../fonts/Metropolis-Regular.otf") format("opentype");
+}
+
+.underbig {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #878eca;
+  white-space: pre;
+  display: block;
+  top: 0.8em;
+  position: relative;
+}
+
+/* .bigwhite::after{
+    content: "\A";
+} */
+
+.bigwhite {
+  font-family: "Avenir Next";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 58px;
+  text-align: center;
+  color: #dddff1;
+  top: 0.3em;
+  position: relative;
+}
+
+.maintable {
+  overflow: hidden;
+  position: relative;
+  max-height: 44vh;
+}
+
+.table {
+  width: 80%;
+  margin: 0 auto;
+  top: 1.2em;
+  position: relative;
+  display: inline-table;
+  padding-bottom: 0.7em;
+}
+
+.left_col {
+  float: left;
+  /* width:300px; */
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 120%;
+
+  /* or 19px */
+  letter-spacing: 0.02em;
+
+  color: #e7e7e7;
+  display: block;
+}
+.right_col {
+  float: right;
+  display: block;
+  /* width:300px; */
+  font-family: "Avenir Next";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 120%;
+
+  /* or 19px */
+  text-align: right;
+  letter-spacing: 0.02em;
+
+  color: #e7e7e7;
+}

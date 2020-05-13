@@ -7,6 +7,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 // import { shadows } from '@material-ui/system';
 import Box from "@material-ui/core/Box";
+import "./Dashboard.css";
 // import leftPane from "./leftPane";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,11 +27,13 @@ const useStyles = makeStyles((theme) => ({
     color: "#878ECA",
     backgroundColor: "#232554",
     marginTop: "0.5em",
-    fontSize: "30px",
+    fontFamily: "Avenir Next",
+    fontSize: "28px",
     borderRadius: "0.3em",
-    fontWeight: 350,
-    letterSpacing: "0.17px",
-    lineHeight: "44px",
+    fontWeight: "normal",
+    fontStyle: "normal",
+    letterSpacing: "0.02em",
+    lineHeight: "42px",
     marginLeft: 0,
     marginRight: 0,
     marginBottom: 0,
@@ -46,17 +49,19 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     backgroundColor: "#232554",
     marginTop: "0",
-    fontSize: "30px",
+    fontSize: "21px",
     borderRadius: "0.3em",
-    fontWeight: 350,
-    letterSpacing: "0.17px",
+    letterSpacing: "0.02em",
     lineHeight: "44px",
     marginLeft: 0,
     marginRight: 0,
     marginBottom: "0.7em",
-    // flexGrow: 5,
     minHeight: "25vh",
+    fontFamily: "Avenir Next",
+    fontStyle: "normal",
+    fontWeight: "normal",
   },
+
   paperleftbottom: {
     padding: theme.spacing(2),
     textAlign: "center",
@@ -66,71 +71,18 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "0.7em",
     fontSize: "30px",
     borderRadius: "0.3em",
-    fontWeight: 350,
-    letterSpacing: "0.17px",
-    lineHeight: "44px",
+    // letterSpacing: "0.17px",
     marginLeft: 0,
     marginRight: 0,
     marginBottom: 0,
-    // flexGrow: 5,
     minHeight: "49vh",
-  },
+    fontFamily: "Avenir Next",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "21px",
+    lineHeight: "25px",
 
-  paperrightlefttop: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: "#878ECA",
-    position: "relative",
-    backgroundColor: "#232554",
-    marginTop: "0",
-    fontSize: "30px",
-    borderRadius: "0.3em",
-    fontWeight: 350,
-    letterSpacing: "0.17px",
-    lineHeight: "44px",
-    marginLeft: 0,
-    marginRight: 0,
-    marginBottom: 0,
-    // flexGrow: 5,
-    minHeight: "20vh",
-  },
-
-  paperrightleftbottom: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: "#878ECA",
-    position: "relative",
-    backgroundColor: "#232554",
-    marginTop: "0",
-    fontSize: "30px",
-    borderRadius: "0.3em",
-    fontWeight: 350,
-    letterSpacing: "0.17px",
-    lineHeight: "44px",
-    marginLeft: 0,
-    marginRight: 0,
-    marginBottom: 0,
-    // flexGrow: 5,
-    minHeight: "20vh",
-  },
-
-  paperrightright: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: "#878ECA",
-    position: "relative",
-    backgroundColor: "#232554",
-    marginTop: "0",
-    fontSize: "30px",
-    borderRadius: "0.3em",
-    fontWeight: 350,
-    letterSpacing: "0.17px",
-    lineHeight: "44px",
-    marginLeft: 0,
-    marginRight: 0,
-    marginBottom: 0,
-    // flexGrow: 5,
-    minHeight: "40vh",
+    // letter-spacing: 0.02em;
   },
 
   papermidmid: {
@@ -148,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
     marginRight: 0,
     marginBottom: 0,
-    minHeight: "37.5vh"
+    minHeight: "37.5vh",
   },
   paperBottom: {
     padding: theme.spacing(0.5),
@@ -254,8 +206,77 @@ function Dashboard() {
             </Grid>
 
             <Grid item xs={3} className={classes.leftpane}>
-              <Paper className={classes.paperlefttop}>xs=3</Paper>
-              <Paper className={classes.paperleftbottom}>xs=3</Paper>
+              <Box
+                bgcolor="#1B1F44"
+                m={8}
+                p={8}
+                boxShadow={6}
+                color="text.primary"
+                clone
+              >
+                <Paper className={classes.paperlefttop}>
+                  World Oil Production <label className="bigwhite">17.87</label>
+                  <label className="underbig"> million barrel per day</label>
+                </Paper>
+              </Box>
+              <Box
+                bgcolor="#1B1F44"
+                m={8}
+                p={8}
+                boxShadow={6}
+                color="text.primary"
+                clone
+              >
+                <Paper className={classes.paperleftbottom}>
+                  Top Oil Producers{" "}
+                  <div className="maintable">
+                    <div className="table">
+                      <div className="left_col">Country 1</div>
+                      <div className="right_col">5,600,200</div>
+                    </div>
+                    <div className="table">
+                      <div className="left_col">Country 1</div>
+                      <div className="right_col">5,600,200</div>
+                    </div>{" "}
+                    <div className="table">
+                      <div className="left_col">Country 1</div>
+                      <div className="right_col">5,600,200</div>
+                    </div>{" "}
+                    <div className="table">
+                      <div className="left_col">Country 1</div>
+                      <div className="right_col">5,600,200</div>
+                    </div>{" "}
+                    <div className="table">
+                      <div className="left_col">Country 1</div>
+                      <div className="right_col">5,600,200</div>
+                    </div>{" "}
+                    <div className="table">
+                      <div className="left_col">Country 1</div>
+                      <div className="right_col">5,600,200</div>
+                    </div>{" "}
+                    <div className="table">
+                      <div className="left_col">Country 1</div>
+                      <div className="right_col">5,600,200</div>
+                    </div>{" "}
+                    <div className="table">
+                      <div className="left_col">Country 1</div>
+                      <div className="right_col">5,600,200</div>
+                    </div>{" "}
+                    <div className="table">
+                      <div className="left_col">Country 1</div>
+                      <div className="right_col">5,600,200</div>
+                    </div>{" "}
+                    <div className="table">
+                      <div className="left_col">Country 1</div>
+                      <div className="right_col">5,600,200</div>
+                    </div>{" "}
+                    <div className="table">
+                      <div className="left_col">Country 1</div>
+                      <div className="right_col">5,600,200</div>
+                    </div>
+                  </div>
+                </Paper>
+              </Box>
             </Grid>
             <Grid item xs={5}>
               {/* <Paper className={classes.papermidmid}>xs=6</Paper> */}
@@ -278,8 +299,8 @@ function Dashboard() {
                 </Grid>
               </Grid>
               <Grid item xs>
-                  <Paper className={classes.papermidmid}>xs=12</Paper>
-                </Grid>
+                <Paper className={classes.papermidmid}>xs=12</Paper>
+              </Grid>
             </Grid>
             <Grid item xs={12}>
               <Box
