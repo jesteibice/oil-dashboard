@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@corps-ui/maps": "^0.1.0",
     "@material-ui/core": "^4.9.14",
     "@material-ui/icons": "^4.9.1",
     "@testing-library/jest-dom": "^4.2.4",
@@ -11,8 +12,9 @@
     "axios": "^0.19.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-iframe": "^1.8.0",
     "react-perfect-scrollbar": "^1.5.8",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
   },
   "scripts": {
     "start": "react-scripts start",

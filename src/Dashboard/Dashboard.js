@@ -1,26 +1,18 @@
-import React from "react";
+import React, { useState, Component, Fragment } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
-// import Typography from '@material-ui/core/Typography';
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-// import { shadows } from '@material-ui/system';
 import Box from "@material-ui/core/Box";
 import "./Dashboard.css";
-// import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from "react-perfect-scrollbar";
-const axios = require('axios');
-
-// GET request for remote image
-// axios({
-//   method: 'get',
-//   url: 'https://www.eia.gov/opendata/embed/iframe.php?geoset_id=INTL.53-1-TBPD.M&map=world&regions=WLD&relation_mode=line%22',
-//   responseType: 'stream'
-// })
-//   .then(function (response) {
-//     console.log(response.data);
-//   });
+// import Iframe from 'react-iframe'
+// import VectorMap from 'react-jvectormap';
+// import WorldMap from 'react-world-map';
+// var WorldMap = require('react-world-map');
+// import { ReactWorldCountriesMap } from "react-world-countries-map"
+import {GeoMap} from "@corps-ui/maps";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -82,7 +74,6 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     backgroundColor: "#232554",
     marginTop: "0.7em",
-    fontSize: "30px",
     borderRadius: "0.3em",
     // letterSpacing: "0.17px",
     marginLeft: 0,
@@ -144,7 +135,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "0",
     borderRadius: "0.3em",
     // letterSpacing: "0.17px",
-    lineHeight: "44px",
+    // lineHeight: "44px",
     marginLeft: 0,
     marginRight: 0,
     marginBottom: "16px",
@@ -204,13 +195,35 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+window.addEventListener('WorldMapClicked', function(e) {console.log('map was clicked, current selection is: ', e.detail.clickedState)});
+
+
 function Dashboard() {
   const classes = useStyles();
 
+  const [map, setMap] = useState(false);
+  const [stylePath, setStylePath] = useState('Dashboard.css')
+
+  if (map) {
+    console.log('loaded')
+    // var mapa = document.querySelectorAll("iframe").contentWindow;
+    // console.log(mapa)
+    // const hx = sx;
+    // document.getElementsByTagName("svg").sytle.cssText = "background: blue;";
+//     var styleEl = document.createElement('style');
+// styleEl.innerHTML = 'svg { background-color: blue ;}';
+// document.head.appendChild(styleEl);
+setTimeout(function(){
+  //do what you need here
+  setStylePath("Map.css")
+}, 2000);
+
+  }
 
   return (
     <React.Fragment>
       <CssBaseline />
+      <link rel="stylesheet" type="text/css" href={stylePath} />
       <Container
         maxWidth="xl"
         style={{ backgroundColor: "#1C1E43", height: "100vh" }}
@@ -310,10 +323,26 @@ function Dashboard() {
                 </Paper>
               </Box>
             </Grid>
-            <Grid item xs={5}>
-              <iframe className="map" frameBorder="0" style={{fill: "#1C1E43"}} src="https://www.eia.gov/opendata/embed/iframe.php?geoset_id=INTL.53-1-TBPD.M&map=world&regions=WLD&relation_mode=line%22"></iframe>
-              {/* <Paper className={classes.papermidmid}>xs=6</Paper> */}
-            </Grid>
+            <Grid item xs={5} className="mapacont">
+              {/* <Iframe onLoad={() => setMap(true)} url="https://www.eia.gov/opendata/embed/iframe.php?geoset_id=INTL.53-1-TBPD.M&map=world&regions=WLD&relation_mode=line%22"
+        width="100%"
+        height="100%"
+        id="myId"
+        className="map"
+        display="initial"
+        frameBorder="0"
+        position="relative"
+        sandbox
+        styles={{background: "black"}}/> */}
+        <div className="map">
+        <GeoMap
+                displayMode="2D"
+                // basemap="streets"
+                zoom={2}
+            />
+            {/* <iframe src="https://knoema.com/atlas/embed/topics/Energy/Oil/Production-of-crude-oil?type=maps" allowtransparency="true" frameborder="0" width="920" min-width="560" height="700" scrolling="no"></iframe> */}</div>
+                    </Grid>
+                    
             <Grid item xs>
               
               <Grid
