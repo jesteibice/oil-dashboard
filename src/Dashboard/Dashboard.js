@@ -10,6 +10,18 @@ import Box from "@material-ui/core/Box";
 import "./Dashboard.css";
 // import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from "react-perfect-scrollbar";
+const axios = require('axios');
+
+// GET request for remote image
+// axios({
+//   method: 'get',
+//   url: 'https://www.eia.gov/opendata/embed/iframe.php?geoset_id=INTL.53-1-TBPD.M&map=world&regions=WLD&relation_mode=line%22',
+//   responseType: 'stream'
+// })
+//   .then(function (response) {
+//     console.log(response.data);
+//   });
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -101,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
     marginRight: 0,
     marginBottom: 0,
-    minHeight: "37.5vh",
+    minHeight: "34.9vh",
   },
   paperBottom: {
     padding: theme.spacing(0.5),
@@ -135,9 +147,9 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "44px",
     marginLeft: 0,
     marginRight: 0,
-    marginBottom: "0.6em",
+    marginBottom: "16px",
     // flexGrow: 5,
-    minHeight: "17vh",
+    minHeight: "16vh",
     fontFamily: "Avenir Next",
     fontStyle: "normal",
     fontWeight: "normal",
@@ -151,20 +163,24 @@ const useStyles = makeStyles((theme) => ({
     color: "#878ECA",
     position: "relative",
     backgroundColor: "#232554",
-    marginTop: "0",
-    fontSize: "30px",
+    // marginTop: "0",
+    marginTop: "8px",
+
     borderRadius: "0.3em",
-    fontWeight: 350,
-    letterSpacing: "0.17px",
-    lineHeight: "44px",
     marginLeft: 0,
     marginRight: 0,
     marginBottom: 0,
-    // flexGrow: 5,
-    minHeight: "17vh",
+    minHeight: "20vh",
+    height: "20vh",
+    fontFamily: "Avenir Next",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: "21px",
+    lineHeight: "25px",
+    letterSpacing: "0.02em",
   },
   paper4: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(0),
     textAlign: "center",
     color: "#878ECA",
     position: "relative",
@@ -179,12 +195,18 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 0,
     marginBottom: "0.7em",
     // flexGrow: 5,
-    minHeight: "36.5vh",
+    minHeight: "38.5vh",
   },
+  boxc:{
+    minHeight: "41.6vh",
+
+    height: "41.6vh",
+  }
 }));
 
 function Dashboard() {
   const classes = useStyles();
+
 
   return (
     <React.Fragment>
@@ -220,7 +242,8 @@ function Dashboard() {
                 clone
               >
                 <Paper className={classes.paperlefttop}>
-                  <div>World Oil Production</div><label className="bigwhite">17.87</label>
+                  <div>World Oil Production</div>
+                  <label className="bigwhite">17.87</label>
                   <label className="underbig"> million barrel per day</label>
                 </Paper>
               </Box>
@@ -233,7 +256,8 @@ function Dashboard() {
                 clone
               >
                 <Paper className={classes.paperleftbottom}>
-                  Top Oil Producers {/* <div className="maintable scroll"> */}
+                  <div>Top Oil Producers</div>{" "}
+                  {/* <div className="maintable scroll"> */}
                   <PerfectScrollbar className="maintable">
                     <div>
                       <div className="table">
@@ -287,9 +311,11 @@ function Dashboard() {
               </Box>
             </Grid>
             <Grid item xs={5}>
+              <iframe className="map" frameBorder="0" style={{fill: "#1C1E43"}} src="https://www.eia.gov/opendata/embed/iframe.php?geoset_id=INTL.53-1-TBPD.M&map=world&regions=WLD&relation_mode=line%22"></iframe>
               {/* <Paper className={classes.papermidmid}>xs=6</Paper> */}
             </Grid>
             <Grid item xs>
+              
               <Grid
                 container
                 direction="row"
@@ -299,17 +325,88 @@ function Dashboard() {
               >
                 {" "}
                 <Grid item xs={8}>
-                  <Paper className={classes.paper2}>
-                    World Oil Consumption
-                  </Paper>
-                  <Paper className={classes.paper3}>xs=12</Paper>
+                <div className={classes.boxc} spacing={2}>
+                  <Box
+                    bgcolor="#1B1F44"
+                    m={8}
+                    p={8}
+                    boxShadow={6}
+                    color="text.primary"
+                    clone
+                  >
+                    <Paper className={classes.paper2}>
+                      <div>World Oil Consumption</div>
+                      <label className="bigwhite2">93</label>
+                      <label className="underbig2">
+                        {" "}
+                        million barrel per day
+                      </label>
+                    </Paper>
+                  </Box>
+                  <Box
+                    bgcolor="#1B1F44"
+                    m={8}
+                    p={8}
+                    boxShadow={6}
+                    color="text.primary"
+                    clone
+                  >
+                    <Paper className={classes.paper3}>
+                      <div>Top 3 Oil Consumers</div>
+                      <div className="maintable2">
+                        <div>
+                          <div className="table2">
+                            <div className="left_col">Country 1</div>
+                            <div className="right_col">5,600,200</div>
+                          </div>
+                          <div className="table2">
+                            <div className="left_col">Country 1</div>
+                            <div className="right_col">5,600,200</div>
+                          </div>{" "}
+                          <div className="table2">
+                            <div className="left_col">Country 1</div>
+                            <div className="right_col">5,600,200</div>
+                          </div>{" "}
+                        </div>
+                      </div>
+                    </Paper>
+                  </Box>
+                  </div>
+
                 </Grid>
                 <Grid item xs={4}>
-                  <Paper className={classes.paper4}>xs=12</Paper>
+                  <Box
+                    bgcolor="#1B1F44"
+                    m={8}
+                    p={8}
+                    boxShadow={6}
+                    color="text.primary"
+                    clone
+                  >
+                    <Paper className={classes.paper4}>
+                      <div className="half halfone">
+                        <div className="brent">Brent</div>
+                        <div className="bigwhite3">$20.7</div>
+                      </div>
+                      <div className="half halftwo">
+                        <div className="brent">Brent</div>
+                        <div className="bigwhite4">$20.7</div>
+                      </div>
+                    </Paper>
+                  </Box>
                 </Grid>
               </Grid>
               <Grid item xs>
-                <Paper className={classes.papermidmid}>xs=12</Paper>
+                <Box
+                  bgcolor="#1B1F44"
+                  m={8}
+                  p={8}
+                  boxShadow={6}
+                  color="text.primary"
+                  clone
+                >
+                  <Paper className={classes.papermidmid}>xs=12</Paper>
+                </Box>
               </Grid>
             </Grid>
             <Grid item xs={12}>
