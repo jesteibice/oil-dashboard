@@ -13,6 +13,9 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 // var WorldMap = require('react-world-map');
 // import { ReactWorldCountriesMap } from "react-world-countries-map"
 import {GeoMap} from "@corps-ui/maps";
+import countries from "../countries.json";
+
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -220,6 +223,54 @@ setTimeout(function(){
 
   }
 
+// var obj = JSON.stringify(countries)
+var i;
+var array1 = new Array;
+var array2 = new Array;
+var array3 = new Array;
+
+for (i = 0; i < 250; i++) {
+  var fil1 = (countries[i]["ISO3166-1-Alpha-3"]);
+  // var fil1 = (countries[i]["ISO3166-1-Alpha-3"] + " " + i);
+  var bycountryconsum = "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-" + fil1 + "-TBPD.A";
+  var bycountryprod = "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-" + fil1 + "-TBPD.M";
+  array1.push(bycountryconsum);
+  array2.push(bycountryprod)
+}
+setTimeout(function(){
+  //do what you need here
+  for (i = 0; i < 50; i++) {
+  // console.log(array2[i])
+  // console.log(array1[i]);
+  fetch(array2[i], { 
+    method: 'GET'
+  })
+  .then(function(response) { return response.json(); })
+  .then(function(json) {
+    // console.log(json.series[0].data[0])
+    // var result = {};
+    // result["key"] = {}
+    // result["key"].json = json 
+    array3.push(json)
+    // console.log(json.series)
+    
+    // use the json
+  });
+  }
+//   array3.sort(function(a, b){return b-a});
+
+//   array3.sort(function(a, b) {
+//     return parseFloat(a.price) - parseFloat(b.price);
+// });
+  console.log(array3)
+  // console.log(array3.series.data)
+
+
+  // console.log(array3.json[0].series[0].data[0])
+}, 2500);
+
+
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -335,11 +386,11 @@ setTimeout(function(){
         sandbox
         styles={{background: "black"}}/> */}
         <div className="map">
-        <GeoMap
+        {/* <GeoMap
                 displayMode="2D"
                 // basemap="streets"
                 zoom={2}
-            />
+            /> */}
             {/* <iframe src="https://knoema.com/atlas/embed/topics/Energy/Oil/Production-of-crude-oil?type=maps" allowtransparency="true" frameborder="0" width="920" min-width="560" height="700" scrolling="no"></iframe> */}</div>
                     </Grid>
                     
