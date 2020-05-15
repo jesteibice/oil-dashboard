@@ -8,7 +8,8 @@ import Box from "@material-ui/core/Box";
 import "./Dashboard.css";
 import PerfectScrollbar from "react-perfect-scrollbar";
 // import { GeoMap } from "@corps-ui/maps";
-import countries from "../countries.json";
+// import countries from "../countries.json";
+import top50 from "../top50.json";
 import axios from "axios";
 import Chart from 'react-apexcharts';
 // import {
@@ -391,50 +392,90 @@ function Dashboard() {
 
   //   }
 
-  // var obj = JSON.stringify(countries)
+  var obj = JSON.stringify(top50)
+  var i;
+  var array1 = [];
+  var array2 = [];
+  var array3 = [];
+  for (i = 0; i < 30; i++) {
+    var fil1 = (top50[i]["ISO3166-1-Alpha-3"]);
+    // var fil1 = (countries[i]["ISO3166-1-Alpha-3"] + " " + i);
+    var bycountryconsum = "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-" + fil1 + "-TBPD.A";
+    var bycountryprod = "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-" + fil1 + "-TBPD.M";
+    array1.push(bycountryconsum);
+    array2.push(bycountryprod);
+  }
+
+  setTimeout(function(){
+    //do what you need here
+    for (i = 0; i < 5; i++) {
+      axios
+      .get(array2[i])
+      .then(
+        (response) => {
+          var topoilprod = response.data;
+          // localStorage.setItem("topoilprod"+i, JSON.stringify(topoilprod));
+          array3.push(topoilprod)
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+  //   array3.sort(function(a, b){return b-a});
+
+  //   array3.sort(function(a, b) {
+  //     return parseFloat(a.price) - parseFloat(b.price);
+  // });
+    console.log("c" + array3)
+    // console.log(array3.series.data)
+
+    // console.log(array3.json[0].series[0].data[0])
+  }, 2500);
+
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-USA-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"USA", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-SAU-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"SAU", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-RUS-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"RUS", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-IRQ-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"IRQ", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-IRN-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"IRN", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-CHN-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"CHN", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-CAN-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"CAN", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-ARE-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"ARE", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-KWT-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"KWT", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-BRA-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"BRA", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-VEN-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"VEN", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-MEX-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"MEX", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-NGA-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"NGA", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-AGO-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"AGO", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-NOR-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"NOR", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-KAZ-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"KAZ", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-QAT-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"QAT", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-DZA-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"DZA", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-OMN-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"OMN", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-LBY-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"LBY", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-GBR-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"GBR", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-COL-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"COL", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-IDN-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"IDN", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-AZE-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"AZE", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-IND-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"IND", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-MYS-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"MYS", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-ECU-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"ECU", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-ARG-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"ARG", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-ROU-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"ROU", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+  // axios   .get("http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-EGY-TBPD.M")   .then(     (response) => {       var topoilprod = response.data;       localStorage.setItem("topoilprod"+"EGY", JSON.stringify(topoilprod));     },     (error) => {       console.log(error);     }   );
+
   // var i;
-  // var array1 = new Array;
-  // var array2 = new Array;
-  // var array3 = new Array;
+  // for (i = 0; i < 30; i++) {
+  //   var fil1 = (top50[i]["ISO3166-1-Alpha-3"]);
+  //   var retrievedFil1 = localStorage.getItem('topoilprod'+fil1);
 
-  // for (i = 0; i < 250; i++) {
-  //   var fil1 = (countries[i]["ISO3166-1-Alpha-3"]);
-  //   // var fil1 = (countries[i]["ISO3166-1-Alpha-3"] + " " + i);
-  //   var bycountryconsum = "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-" + fil1 + "-TBPD.A";
-  //   var bycountryprod = "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-" + fil1 + "-TBPD.M";
-  //   array1.push(bycountryconsum);
-  //   array2.push(bycountryprod)
+  //   console.log(JSON.parse(retrievedFil1).series[0].data[0][1]);
+  //   console.log(JSON.parse(retrievedFil1).series[0].name.replace("Petroleum and other liquids production, ", "").replace(", Monthly", ""));
+  //   console.log(JSON.parse(retrievedFil1).series[0].geography);
   // }
-  // setTimeout(function(){
-  //   //do what you need here
-  //   for (i = 0; i < 50; i++) {
-  //   // console.log(array2[i])
-  //   // console.log(array1[i]);
-  //   fetch(array2[i], {
-  //     method: 'GET'
-  //   })
-  //   .then(function(response) { return response.json(); })
-  //   .then(function(json) {
-  //     // console.log(json.series[0].data[0])
-  //     // var result = {};
-  //     // result["key"] = {}
-  //     // result["key"].json = json
-  //     array3.push(json)
-  //     // console.log(json.series)
 
-  //     // use the json
-  //   });
-  //   }
-  // //   array3.sort(function(a, b){return b-a});
 
-  // //   array3.sort(function(a, b) {
-  // //     return parseFloat(a.price) - parseFloat(b.price);
-  // // });
-  //   console.log(array3)
-  //   // console.log(array3.series.data)
 
-  //   // console.log(array3.json[0].series[0].data[0])
-  // }, 2500);
 
   axios
     .get(
