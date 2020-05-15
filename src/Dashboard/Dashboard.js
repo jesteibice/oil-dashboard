@@ -7,23 +7,19 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import "./Dashboard.css";
 import PerfectScrollbar from "react-perfect-scrollbar";
-// import Iframe from 'react-iframe'
-// import VectorMap from 'react-jvectormap';
-// import WorldMap from 'react-world-map';
-// var WorldMap = require('react-world-map');
-// import { ReactWorldCountriesMap } from "react-world-countries-map"
-import { GeoMap } from "@corps-ui/maps";
+// import { GeoMap } from "@corps-ui/maps";
 import countries from "../countries.json";
 import axios from "axios";
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  ZoomableGroup,
-} from "react-simple-maps";
+import Chart from 'react-apexcharts';
+// import {
+//   ComposableMap,
+//   Geographies,
+//   Geography,
+//   ZoomableGroup,
+// } from "react-simple-maps";
 // url to a valid topojson file
-const geoUrl =
-  "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
+// const geoUrl =
+//   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
 var numeral = require("numeral");
 
@@ -117,6 +113,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 0,
     marginBottom: 0,
     minHeight: "34.9vh",
+    maxHeight: "34.9vh"
   },
   paperBottom: {
     padding: theme.spacing(0.5),
@@ -207,6 +204,50 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+      
+var options = {
+  series: [{
+  name: "STOCK ABC",
+  // data: series.monthDataSeries1.prices
+}],
+  chart: {
+  type: 'area',
+  height: 350,
+  zoom: {
+    enabled: false
+  }
+},
+dataLabels: {
+  enabled: false
+},
+stroke: {
+  curve: 'straight'
+},
+
+title: {
+  text: 'Fundamental Analysis of Stocks',
+  align: 'left'
+},
+subtitle: {
+  text: 'Price Movements',
+  align: 'left'
+},
+// labels: series.monthDataSeries1.dates,
+xaxis: {
+  type: 'datetime',
+},
+yaxis: {
+  opposite: true
+},
+legend: {
+  horizontalAlign: 'left'
+}
+};
+
+// var chart = new ApexCharts(document.querySelector("#chart"), options);
+// chart.render();
+
 // window.addEventListener('WorldMapClicked', function(e) {console.log('map was clicked, current selection is: ', e.detail.clickedState)});
 
 function Dashboard() {
@@ -217,6 +258,122 @@ function Dashboard() {
   const [wconsum, setWconsum] = useState("");
   const [brent, setBrent] = useState("");
   const [wti, setWti] = useState("");
+  const [chart, setChart] = useState("");
+  const [options, setOptions] = useState({
+    chart: {
+      type: 'area',
+      zoom: {
+        enabled: false
+      },
+      width: '100%',
+      toolbar: {
+        show: false,
+        offsetX: 0,
+        offsetY: 0,
+        tools: {
+          download: false,
+          selection: false,
+          zoom: false,
+          zoomin: false,
+          zoomout: false,
+          pan: false,
+          customIcons: []
+        },
+        autoSelected: 'zoom' 
+      },
+    },
+    dataLabels: {
+      enabled: false
+    },
+    stroke: {
+      curve: 'smooth'
+    },
+    // labels: series.monthDataSeries1.dates,
+    xaxis: {
+      // type: 'datetime',
+      type: 'category',
+      categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+      labels: {
+        show: false,
+      },
+    },
+    yaxis: {
+      opposite: true,
+      labels: {
+        show: false,
+      },
+    },
+    legend: {
+      horizontalAlign: 'left'
+    },
+    noData: {
+      text: 'Loading...'
+    },
+    
+      colors: ['#66C7DC', "#232554"],
+      grid: {
+        show: true,
+        borderColor: '#E7E7E7',
+        strokeDashArray: 5000,
+        opacity: 0.1,
+        position: 'back',
+        // xaxis: {
+        //     lines: {
+        //         show: true
+        //     }
+        // },   
+        // yaxis: {
+        //     lines: {
+        //         show: false
+        //     }
+        // },  
+        // row: {
+        //     colors: undefined,
+        //     opacity: 0.5
+        // },  
+        // column: {
+        //     colors: undefined,
+        //     opacity: 0.5
+        // },  
+        // padding: {
+        //     top: 0,
+        //     right: 0,
+        //     bottom: 0,
+        //     left: 0
+        // },  
+    },
+    fill: {
+      colors: undefined,
+      opacity: 0.9,
+      type: 'solid',
+      gradient: {
+          shade: 'dark',
+          type: "horizontal",
+          shadeIntensity: 0.5,
+          gradientToColors: undefined,
+          inverseColors: true,
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [0, 50, 100],
+          colorStops: []
+      },
+      pattern: {
+          style: 'verticalLines',
+          width: 6,
+          height: 6,
+          strokeWidth: 2,
+      },
+    }
+    
+  });
+  const [series, setSeries] = useState( [
+    {
+      name: "series-1",
+      data: [30, 40, 45, 50, 49, 60, 70, 91]
+    }
+  ])
+  // const [chartProd, setChartProd] = useState("");
+  // const [chartConsum, setChartConsum] = useState("");
 
   //   if (map) {
   //     console.log('loaded')
@@ -294,7 +451,7 @@ function Dashboard() {
         var string = numeral(wordprod3).format("0.00a");
         var end = string.replace(/m/g, "");
         setWprod(end);
-        console.log(wordprod3);
+        // console.log(wordprod3);
       },
       (error) => {
         console.log(error);
@@ -565,7 +722,17 @@ function Dashboard() {
                   color="text.primary"
                   clone
                 >
-                  <Paper className={classes.papermidmid}>xs=12</Paper>
+                  <Paper className={classes.papermidmid}>          
+                  {/* <div className="mixed-chart"> */}
+            <Chart
+              options={options}
+              series={series}
+              type="area"
+              width="100%"
+              height="95%"
+            />
+          {/* </div> */}
+          </Paper>
                 </Box>
               </Grid>
             </Grid>
