@@ -200,10 +200,45 @@ svg {
   display: block;
   left: 0;
   right: 0;
+  /* background-color: tomato; */
+}
+
+.div{
+  height: 100%;
+  width: 100%;
 }
 
 path {
   fill: #232554;
+}
+
+g{
+  height: 100%;
+  width: 100%;
+}
+
+.eia-visualization {
+  height: 100%;
+  width: 100%;
+}
+span.EIA-map-title {
+position: absolute;
+z-index: 10000;
+left: 100px;
+color: black;
+font-family: Arial, Helvetica, sans-serif;
+}
+.jvectormap-legend{
+color: black;
+background-color: transparent;
+font-family: Arial, Helvetica, sans-serif;
+}
+.jvectormap-legend-title{
+  font-weight: normal;
+}
+
+.jvectormap-legend-cnt-h .jvectormap-legend-tick {
+  width: 60px;
 }
 
 /*.map-unselected {

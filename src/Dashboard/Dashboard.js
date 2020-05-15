@@ -21,7 +21,6 @@ import {
   Geography,
   ZoomableGroup,
 } from "react-simple-maps";
-
 // url to a valid topojson file
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
@@ -456,24 +455,12 @@ function Dashboard() {
               </Box>
             </Grid>
             <Grid item xs={5} className="mapacont">
-              {/* <Iframe onLoad={() => setMap(true)} url="https://www.eia.gov/opendata/embed/iframe.php?geoset_id=INTL.53-1-TBPD.M&map=world&regions=WLD&relation_mode=line%22"
-        width="100%"
-        height="100%"
-        id="myId"
-        className="map"
-        display="initial"
-        frameBorder="0"
-        position="relative"
-        sandbox
-        styles={{background: "black"}}/> */}
+              {/* <Iframe onLoad={() => setMap(true)} url="https://www.eia.gov/opendata/embed/iframe.php?geoset_id=INTL.53-1-TBPD.M&map=world&regions=WLD&relation_mode=line%22" */}
+  
               <div className="map">
-                {/* <GeoMap
-                displayMode="2D"
-                // basemap="streets"
-                zoom={2}
-            /> */}
-                {/* <iframe src="https://knoema.com/atlas/embed/topics/Energy/Oil/Production-of-crude-oil?type=maps" allowtransparency="true" frameborder="0" width="920" min-width="560" height="700" scrolling="no"></iframe> */}
-                <ComposableMap>
+           
+            
+                {/* <ComposableMap>
                 <ZoomableGroup>
                   <Geographies geography={geoUrl}>
                     {({ geographies }) =>
@@ -483,7 +470,9 @@ function Dashboard() {
                     }
                   </Geographies>
                   </ZoomableGroup>
-                </ComposableMap>{" "}
+                </ComposableMap>{" "} */}
+    <object type="text/html" data="https://www.eia.gov/opendata/embed/iframe.php?geoset_id=INTL.53-1-TBPD.M&map=world&regions=WLD&relation_mode=line%22" width="100%" height="100%" style={{overflow: "auto", border:"none"}}>
+    </object>
               </div>
             </Grid>
 
