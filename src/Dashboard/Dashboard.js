@@ -102,6 +102,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 0,
     minHeight: "34.9vh",
     maxHeight: "34.9vh",
+    paddingRight: 0,
   },
   paperBottom: {
     padding: theme.spacing(0.5),
@@ -233,7 +234,6 @@ var options = {
   },
 };
 
-
 // window.addEventListener('WorldMapClicked', function(e) {console.log('map was clicked, current selection is: ', e.detail.clickedState)});
 
 function Dashboard() {
@@ -246,6 +246,7 @@ function Dashboard() {
   const [wconsum, setWconsum] = useState("");
   const [brent, setBrent] = useState("");
   const [wti, setWti] = useState("");
+  const [consumchart, setConsumchart] = useState("")
   const [chart, setChart] = useState("");
   const [options, setOptions] = useState({
     chart: {
@@ -331,12 +332,30 @@ function Dashboard() {
       // },
     },
   });
+  
   const [series, setSeries] = useState([
     {
-      name: "series-1",
-      data: [30, 40, 45, 50, 49, 60, 70, 91],
+      name: "Kb/d",
+      data: [0,1]
     },
   ]);
+ 
+  // consumchart
+
+  //   .map((item) => (setSeries.data(item.consumvalue)))
+      // // // // <div className="table">
+        {/* <div className="left_col">{item.geography} - {item.name}</div> */}
+        // <div className="left_col">{item.name}</div>
+        // <div className="right_col">{`${item.newestData.toFixed(
+          // 1
+        // )}k`}</div>
+      // </div>
+    // ))
+
+    // consumyear,
+    // consumvalue,
+
+  // setSeries.data(consumW)
   // const [chartProd, setChartProd] = useState("");
   // const [chartConsum, setChartConsum] = useState("");
 
@@ -349,7 +368,7 @@ function Dashboard() {
   //   console.log(JSON.parse(retrievedFil1).series[0].name.replace("Petroleum and other liquids production, ", "").replace(", Monthly", ""));
   //   console.log(JSON.parse(retrievedFil1).series[0].geography);
   // }
-
+  // console.log(consumchart.series.data)
   useEffect(() => {
     axios
       .get(
@@ -382,12 +401,27 @@ function Dashboard() {
       .then(
         (response) => {
           var wordconsum = response.data;
+
+          
           var wordconsum2 = wordconsum.series[0].data[0][1];
           var wordconsum3 = wordconsum2.toFixed(3);
           var wordconsum4 = wordconsum3.toString().split(".").join("");
           var string2 = numeral(wordconsum4).format("0.00a");
           var end2 = string2.replace(/m/g, "");
           setWconsum(end2);
+           var i;
+          for (i = 0; i < 30; i++) {
+          var consumyear = wordconsum.series[0].data[i][1]
+          var consumvalue = wordconsum.series[0].data[i][0]
+          const newItem = {
+            consumyear,
+            consumvalue,
+          };
+          setConsumchart((oldConsumchart) => [...oldConsumchart, newItem]);
+        }
+  
+
+          // setConsumchart(wordconsum.series[0].data);
         },
         (error) => {
           console.log(error);
@@ -439,7 +473,8 @@ function Dashboard() {
 
         const name = topoilprod.series[0].name
           .replace("Petroleum and other liquids production, ", "")
-          .replace(", Monthly", "");
+          .replace(", Monthly", "")
+          .replace("United Arab Emirates", "UAE");
         const geography = topoilprod.series[0].geography;
         const newestData = topoilprod.series[0].data[0][1];
 
@@ -461,10 +496,11 @@ function Dashboard() {
     axios.get(url).then(
       (response) => {
         const topoilconsum = response.data;
-        console.log(topoilconsum.series[0].name)
+        console.log(topoilconsum.series[0].name);
         const name = topoilconsum.series[0].name
           .replace("Petroleum and other liquids consumption, ", "")
-          .replace(", Annual", "");
+          .replace(", Annual", "")
+          .replace("United Arab Emirates", "UAE");
         const geography = topoilconsum.series[0].geography;
         const newestData = topoilconsum.series[0].data[0][1];
 
@@ -489,64 +525,180 @@ function Dashboard() {
     );
   }, []);
 
-  // TODO: SAU C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-SAU-TBPD.A"     );   }, []);
-  // TODO: RUS C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-RUS-TBPD.A"     );   }, []);
-  // TODO: IRQ C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-IRQ-TBPD.A"     );   }, []);
-  // TODO: IRN C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-IRN-TBPD.A"     );   }, []);
-  // TODO: CHN C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-CHN-TBPD.A"     );   }, []);
-  // TODO: CAN C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-CAN-TBPD.A"     );   }, []);
-  // TODO: ARE C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-ARE-TBPD.A"     );   }, []);
-  // TODO: KWT C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-KWT-TBPD.A"     );   }, []);
-  // TODO: BRA C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-BRA-TBPD.A"     );   }, []);
-  // TODO: VEN C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-VEN-TBPD.A"     );   }, []);
-  // TODO: MEX C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-MEX-TBPD.A"     );   }, []);
-  // TODO: NGA C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-NGA-TBPD.A"     );   }, []);
-  // TODO: AGO C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-AGO-TBPD.A"     );   }, []);
-  // TODO: NOR C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-NOR-TBPD.A"     );   }, []);
-  // TODO: KAZ C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-KAZ-TBPD.A"     );   }, []);
-  // TODO: QAT C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-QAT-TBPD.A"     );   }, []);
-  // TODO: DZA C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-DZA-TBPD.A"     );   }, []);
-  // TODO: OMN C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-OMN-TBPD.A"     );   }, []);
-  // TODO: LBY C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-LBY-TBPD.A"     );   }, []);
-  // TODO: GBR C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-GBR-TBPD.A"     );   }, []);
-  // TODO: COL C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-COL-TBPD.A"     );   }, []);
-  // TODO: IDN C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-IDN-TBPD.A"     );   }, []);
-  // TODO: AZE C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-AZE-TBPD.A"     );   }, []);
-  // TODO: IND C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-IND-TBPD.A"     );   }, []);
-  // TODO: MYS C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-MYS-TBPD.A"     );   }, []);
-  // TODO: ECU C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-ECU-TBPD.A"     );   }, []);
-  // TODO: ARG C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-ARG-TBPD.A"     );   }, []);
-  // TODO: ROU C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-ROU-TBPD.A"     );   }, []);
-  // TODO: EGY C   
-  useEffect(() => {     handleResponseData2(       "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-EGY-TBPD.A"     );   }, []);
+  // TODO: SAU C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-SAU-TBPD.A"
+    );
+  }, []);
+  // TODO: RUS C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-RUS-TBPD.A"
+    );
+  }, []);
+  // TODO: IRQ C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-IRQ-TBPD.A"
+    );
+  }, []);
+  // TODO: IRN C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-IRN-TBPD.A"
+    );
+  }, []);
+  // TODO: CHN C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-CHN-TBPD.A"
+    );
+  }, []);
+  // TODO: CAN C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-CAN-TBPD.A"
+    );
+  }, []);
+  // TODO: ARE C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-ARE-TBPD.A"
+    );
+  }, []);
+  // TODO: KWT C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-KWT-TBPD.A"
+    );
+  }, []);
+  // TODO: BRA C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-BRA-TBPD.A"
+    );
+  }, []);
+  // TODO: VEN C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-VEN-TBPD.A"
+    );
+  }, []);
+  // TODO: MEX C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-MEX-TBPD.A"
+    );
+  }, []);
+  // TODO: NGA C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-NGA-TBPD.A"
+    );
+  }, []);
+  // TODO: AGO C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-AGO-TBPD.A"
+    );
+  }, []);
+  // TODO: NOR C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-NOR-TBPD.A"
+    );
+  }, []);
+  // TODO: KAZ C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-KAZ-TBPD.A"
+    );
+  }, []);
+  // TODO: QAT C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-QAT-TBPD.A"
+    );
+  }, []);
+  // TODO: DZA C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-DZA-TBPD.A"
+    );
+  }, []);
+  // TODO: OMN C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-OMN-TBPD.A"
+    );
+  }, []);
+  // TODO: LBY C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-LBY-TBPD.A"
+    );
+  }, []);
+  // TODO: GBR C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-GBR-TBPD.A"
+    );
+  }, []);
+  // TODO: COL C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-COL-TBPD.A"
+    );
+  }, []);
+  // TODO: IDN C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-IDN-TBPD.A"
+    );
+  }, []);
+  // TODO: AZE C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-AZE-TBPD.A"
+    );
+  }, []);
+  // TODO: IND C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-IND-TBPD.A"
+    );
+  }, []);
+  // TODO: MYS C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-MYS-TBPD.A"
+    );
+  }, []);
+  // TODO: ECU C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-ECU-TBPD.A"
+    );
+  }, []);
+  // TODO: ARG C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-ARG-TBPD.A"
+    );
+  }, []);
+  // TODO: ROU C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-ROU-TBPD.A"
+    );
+  }, []);
+  // TODO: EGY C
+  useEffect(() => {
+    handleResponseData2(
+      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-EGY-TBPD.A"
+    );
+  }, []);
 
   // TODO: USA
   useEffect(() => {
@@ -732,6 +884,20 @@ function Dashboard() {
     );
   }, []);
 
+  useEffect(() => {
+    chartConsum();
+  }, []);
+
+  function chartProd() {
+    document.querySelectorAll(".btn")[1].style.opacity = 1;
+    document.querySelectorAll(".btn")[0].style.opacity = 0.4;
+  }
+
+  function chartConsum() {
+    document.querySelectorAll(".btn")[0].style.opacity = 1;
+    document.querySelectorAll(".btn")[1].style.opacity = 0.4;
+  }
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -870,22 +1036,22 @@ function Dashboard() {
                         <div>Top 3 Oil Consumers</div>
                         <div className="maintable2">
                           <div>
-                          {dataC
-                        .sort(
-                          (prev, curr) =>
-                            parseFloat(curr.newestData) -
-                            parseFloat(prev.newestData)
-                        ).slice(0,3)
-                        .map((item) => (
-                          <div className="table2">
-                          {/* <div className="left_col">{item.geography} - {item.name}</div> */}
-                          <div className="left_col">{item.name}</div>
-                          <div className="right_col">{`${item.newestData.toFixed(
-                              1
-                            )}k`}</div>
-                          </div>
-                        ))}
-
+                            {dataC
+                              .sort(
+                                (prev, curr) =>
+                                  parseFloat(curr.newestData) -
+                                  parseFloat(prev.newestData)
+                              )
+                              .slice(0, 3)
+                              .map((item) => (
+                                <div className="table2">
+                                  {/* <div className="left_col">{item.geography} - {item.name}</div> */}
+                                  <div className="left_col">{item.name}</div>
+                                  <div className="right_col">{`${item.newestData.toFixed(
+                                    1
+                                  )}k`}</div>
+                                </div>
+                              ))}
                           </div>
                         </div>
                       </Paper>
@@ -924,15 +1090,31 @@ function Dashboard() {
                   clone
                 >
                   <Paper className={classes.papermidmid}>
-                    {/* <div className="mixed-chart"> */}
-                    <Chart
-                      options={options}
-                      series={series}
-                      type="area"
-                      width="100%"
-                      height="95%"
-                    />
-                    {/* </div> */}
+                    <div className="chartpose">
+                      <Chart
+                        options={options}
+                        series={series}
+                        type="area"
+                        width="100%"
+                        height="100%"
+                      />
+                    </div>
+                    {/* <div className="btns">
+                      <button onClick={chartConsum} className="btn">
+                        Oil Consumption
+                      </button>
+                      <button onClick={chartProd} className="btn">
+                        Oil Production
+                      </button>
+                    </div> */}
+                    <div className="btns">
+                      <span onClick={chartConsum} className="btn">
+                        Oil Consumption
+                      </span>
+                      <span onClick={chartProd} className="btn">
+                        Oil Production
+                      </span>
+                    </div>
                   </Paper>
                 </Box>
               </Grid>
