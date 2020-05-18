@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
     marginRight: 0,
     marginBottom: 0,
-    minHeight: "49vh",
+    minHeight: "49.6vh",
     fontFamily: "Avenir Next",
     fontStyle: "normal",
     fontWeight: "normal",
@@ -194,49 +194,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-var options = {
-  series: [
-    {
-      name: "STOCK ABC",
-      // data: series.monthDataSeries1.prices
-    },
-  ],
-  chart: {
-    type: "area",
-    height: 350,
-    zoom: {
-      enabled: false,
-    },
-  },
-  dataLabels: {
-    enabled: false,
-  },
-  stroke: {
-    curve: "straight",
-  },
-
-  title: {
-    text: "Fundamental Analysis of Stocks",
-    align: "left",
-  },
-  subtitle: {
-    text: "Price Movements",
-    align: "left",
-  },
-  // labels: series.monthDataSeries1.dates,
-  xaxis: {
-    type: "datetime",
-  },
-  yaxis: {
-    opposite: true,
-  },
-  legend: {
-    horizontalAlign: "left",
-  },
-};
-
-// window.addEventListener('WorldMapClicked', function(e) {console.log('map was clicked, current selection is: ', e.detail.clickedState)});
-
 function Dashboard() {
   const classes = useStyles();
 
@@ -247,8 +204,6 @@ function Dashboard() {
   const [wconsum, setWconsum] = useState("");
   const [brent, setBrent] = useState("");
   const [wti, setWti] = useState("");
-  const [consumchart, setConsumchart] = useState("");
-  const [chart, setChart] = useState("");
   const [options, setOptions] = useState({
     chart: {
       type: "area",
@@ -337,84 +292,12 @@ function Dashboard() {
   const [series, setSeries] = useState([
     {
       name: "Kb/d",
-      data: [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        10,
-        13,
-        15,
-        17,
-        20,
-        150,
-        160,
-        160,
-        160,
-        150,
-        160,
-        160,
-        160,
-        150,
-        20,
-        17,
-        15,
-        13,
-        10,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
+      data: [0,1,2,3,4,5,6,7
+        
       ],
     },
   ]);
 
-  // consumchart
-
-  //   .map((item) => (setSeries.data(item.consumvalue)))
-  // // // // <div className="table">
-  {
-    /* <div className="left_col">{item.geography} - {item.name}</div> */
-  }
-  // <div className="left_col">{item.name}</div>
-  // <div className="right_col">{`${item.newestData.toFixed(
-  // 1
-  // )}k`}</div>
-  // </div>
-  // ))
-
-  // consumyear,
-  // consumvalue,
-
-  // setSeries.data(consumW)
-  // const [chartProd, setChartProd] = useState("");
-  // const [chartConsum, setChartConsum] = useState("");
-
-  // var i;
-  // for (i = 0; i < 30; i++) {
-  //   var fil1 = (top50[i]["ISO3166-1-Alpha-3"]);
-  //   var retrievedFil1 = localStorage.getItem('topoilprod'+fil1);
-
-  //   console.log(JSON.parse(retrievedFil1).series[0].data[0][1]);
-  //   console.log(JSON.parse(retrievedFil1).series[0].name.replace("Petroleum and other liquids production, ", "").replace(", Monthly", ""));
-  //   console.log(JSON.parse(retrievedFil1).series[0].geography);
-  // }
-  // console.log(consumchart.series.data)
   useEffect(() => {
     axios
       .get(
@@ -427,11 +310,9 @@ function Dashboard() {
           var wordprod22 = wordprod2.toFixed(2);
           var wordprod3 = wordprod22.toString().split(".").join("");
           wordprod3 += 0;
-          // var wordprod3 = wordprod2.toString();
           var string = numeral(wordprod3).format("0.00a");
           var end = string.replace(/m/g, "");
           setWprod(end);
-          // console.log("setWprod", end);
         },
         (error) => {
           console.log(error);
@@ -456,16 +337,13 @@ function Dashboard() {
           setWconsum(end2);
           var i;
           for (i = 0; i < 30; i++) {
-            var consumyear = wordconsum.series[0].data[i][1];
-            var consumvalue = wordconsum.series[0].data[i][0];
-            const newItem = {
-              consumyear,
-              consumvalue,
-            };
-            setConsumchart((oldConsumchart) => [...oldConsumchart, newItem]);
+            var data = wordconsum.series[0].data[i][1].toFixed(2);
+            var year = wordconsum.series[0].data[i][0];
+            var name = "kb/d";
+
+            console.log(data)
           }
 
-          // setConsumchart(wordconsum.series[0].data);
         },
         (error) => {
           console.log(error);
@@ -809,14 +687,6 @@ function Dashboard() {
                         height="100%"
                       />
                     </div>
-                    {/* <div className="btns">
-                      <button onClick={chartConsum} className="btn">
-                        Oil Consumption
-                      </button>
-                      <button onClick={chartProd} className="btn">
-                        Oil Production
-                      </button>
-                    </div> */}
                     <div className="btns">
                       <span onClick={chartConsum} className="btn">
                         Oil Consumption
