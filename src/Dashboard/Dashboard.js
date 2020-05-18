@@ -514,23 +514,23 @@ function Dashboard() {
     axios.get(url).then(
       (response) => {
         const topoilprod = response.data;
-        if(!response.data.data){
-          if(topoilprod.series[0].data[0][1] > 0){
-          const name = topoilprod.series[0].name
-            .replace("Petroleum and other liquids production, ", "")
-            .replace(", Monthly", "")
-            .replace("United Arab Emirates", "UAE");
-          const geography = topoilprod.series[0].geography;
-          const newestData = topoilprod.series[0].data[0][1];
+        if (!response.data.data) {
+          if (topoilprod.series[0].data[0][1] > 0) {
+            const name = topoilprod.series[0].name
+              .replace("Petroleum and other liquids production, ", "")
+              .replace(", Monthly", "")
+              .replace("United Arab Emirates", "UAE");
+            const geography = topoilprod.series[0].geography;
+            const newestData = topoilprod.series[0].data[0][1];
 
-          const newItem = {
-            name,
-            geography,
-            newestData,
-          };
+            const newItem = {
+              name,
+              geography,
+              newestData,
+            };
 
-          setData((oldData) => [...oldData, newItem]);
-        }
+            setData((oldData) => [...oldData, newItem]);
+          }
         }
       },
       (error) => {
@@ -543,20 +543,24 @@ function Dashboard() {
     axios.get(url).then(
       (response) => {
         const topoilconsum = response.data;
-        const name = topoilconsum.series[0].name
-          .replace("Petroleum and other liquids consumption, ", "")
-          .replace(", Annual", "")
-          .replace("United Arab Emirates", "UAE");
-        const geography = topoilconsum.series[0].geography;
-        const newestData = topoilconsum.series[0].data[0][1];
+        if (!response.data.data) {
+          if (topoilconsum.series[0].data[0][1] > 0) {
+            const name = topoilconsum.series[0].name
+              .replace("Petroleum and other liquids consumption, ", "")
+              .replace(", Annual", "")
+              .replace("United Arab Emirates", "UAE");
+            const geography = topoilconsum.series[0].geography;
+            const newestData = topoilconsum.series[0].data[0][1];
 
-        const newItem = {
-          name,
-          geography,
-          newestData,
-        };
+            const newItem = {
+              name,
+              geography,
+              newestData,
+            };
 
-        setDataC((oldDataC) => [...oldDataC, newItem]);
+            setDataC((oldDataC) => [...oldDataC, newItem]);
+          }
+        }
       },
       (error) => {
         console.log(error);
@@ -577,371 +581,18 @@ function Dashboard() {
     }
   }, []);
 
-  // TODO: USA C
+  // Tabele consum
   useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-USA-TBPD.A"
-    );
+    var i;
+    for (i = 0; i < 250; i++) {
+      var fil1 = countries[i]["ISO3166-1-Alpha-3"];
+      handleResponseData2(
+        "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-" +
+          fil1 +
+          "-TBPD.A"
+      );
+    }
   }, []);
-
-  // TODO: SAU C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-SAU-TBPD.A"
-    );
-  }, []);
-  // TODO: RUS C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-RUS-TBPD.A"
-    );
-  }, []);
-  // TODO: IRQ C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-IRQ-TBPD.A"
-    );
-  }, []);
-  // TODO: IRN C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-IRN-TBPD.A"
-    );
-  }, []);
-  // TODO: CHN C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-CHN-TBPD.A"
-    );
-  }, []);
-  // TODO: CAN C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-CAN-TBPD.A"
-    );
-  }, []);
-  // TODO: ARE C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-ARE-TBPD.A"
-    );
-  }, []);
-  // TODO: KWT C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-KWT-TBPD.A"
-    );
-  }, []);
-  // TODO: BRA C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-BRA-TBPD.A"
-    );
-  }, []);
-  // TODO: VEN C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-VEN-TBPD.A"
-    );
-  }, []);
-  // TODO: MEX C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-MEX-TBPD.A"
-    );
-  }, []);
-  // TODO: NGA C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-NGA-TBPD.A"
-    );
-  }, []);
-  // TODO: AGO C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-AGO-TBPD.A"
-    );
-  }, []);
-  // TODO: NOR C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-NOR-TBPD.A"
-    );
-  }, []);
-  // TODO: KAZ C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-KAZ-TBPD.A"
-    );
-  }, []);
-  // TODO: QAT C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-QAT-TBPD.A"
-    );
-  }, []);
-  // TODO: DZA C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-DZA-TBPD.A"
-    );
-  }, []);
-  // TODO: OMN C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-OMN-TBPD.A"
-    );
-  }, []);
-  // TODO: LBY C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-LBY-TBPD.A"
-    );
-  }, []);
-  // TODO: GBR C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-GBR-TBPD.A"
-    );
-  }, []);
-  // TODO: COL C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-COL-TBPD.A"
-    );
-  }, []);
-  // TODO: IDN C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-IDN-TBPD.A"
-    );
-  }, []);
-  // TODO: AZE C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-AZE-TBPD.A"
-    );
-  }, []);
-  // TODO: IND C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-IND-TBPD.A"
-    );
-  }, []);
-  // TODO: MYS C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-MYS-TBPD.A"
-    );
-  }, []);
-  // TODO: ECU C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-ECU-TBPD.A"
-    );
-  }, []);
-  // TODO: ARG C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-ARG-TBPD.A"
-    );
-  }, []);
-  // TODO: ROU C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-ROU-TBPD.A"
-    );
-  }, []);
-  // TODO: EGY C
-  useEffect(() => {
-    handleResponseData2(
-      "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.5-2-EGY-TBPD.A"
-    );
-  }, []);
-
-  // // TODO: USA
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-USA-TBPD.M"
-  //   );
-  // }, []);
-
-  // // TODO: SAU
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-SAU-TBPD.M"
-  //   );
-  // }, []);
-
-  // // TODO: RUS
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-RUS-TBPD.M"
-  //   );
-  // }, []);
-
-  // // TODO: IRQ
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-IRQ-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: IRN
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-IRN-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: CHN
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-CHN-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: CAN
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-CAN-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: ARE
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-ARE-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: KWT
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-KWT-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: BRA
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-BRA-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: VEN
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-VEN-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: MEX
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-MEX-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: NGA
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-NGA-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: AGO
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-AGO-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: NOR
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-NOR-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: KAZ
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-KAZ-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: QAT
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-QAT-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: DZA
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-DZA-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: OMN
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-OMN-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: LBY
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-LBY-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: GBR
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-GBR-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: COL
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-COL-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: IDN
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-IDN-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: AZE
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-AZE-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: IND
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-IND-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: MYS
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-MYS-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: ECU
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-ECU-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: ARG
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-ARG-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: ROU
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-ROU-TBPD.M"
-  //   );
-  // }, []);
-  // // TODO: EGY
-  // useEffect(() => {
-  //   handleResponseData(
-  //     "http://api.eia.gov/series/?api_key=c10de4f134f66672b5c80ff6c0eda8c4&series_id=INTL.53-1-EGY-TBPD.M"
-  //   );
-  // }, []);
 
   useEffect(() => {
     chartConsum();
