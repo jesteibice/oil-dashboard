@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 0,
     overflow: "hidden",
   },
+  [theme.breakpoints.only('md')]: {
+    backgroundColor: 'red',
+  },
   rootright: {
     flexGrow: 1,
     marginTop: 0,
@@ -139,7 +142,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "21px",
     lineHeight: "25px",
     letterSpacing: "0.02em",
-    maxHeight: "16.7vh"
+    maxHeight: "16.7vh",
   },
   paper3: {
     padding: theme.spacing(2),
@@ -191,11 +194,12 @@ function Dashboard() {
 
   const [data, setData] = useState([]);
   const [dataC, setDataC] = useState([]);
-  const [map, setMap] = useState(false);
+  // const [map, setMap] = useState(false);
   const [wprod, setWprod] = useState("");
   const [wconsum, setWconsum] = useState("");
   const [brent, setBrent] = useState("");
   const [wti, setWti] = useState("");
+  // eslint-disable-next-line
   const [options, setOptions] = useState({
     chart: {
       type: "area",
@@ -284,9 +288,7 @@ function Dashboard() {
   const [series, setSeries] = useState([
     {
       name: "Kb/d",
-      data: [0,1,2,3,4,5,6,7
-        
-      ],
+      data: [0, 1, 2, 3, 4, 5, 6, 7],
     },
   ]);
 
@@ -333,9 +335,8 @@ function Dashboard() {
             var year = wordconsum.series[0].data[i][0];
             var name = "kb/d";
 
-            console.log(data)
+            console.log(data);
           }
-
         },
         (error) => {
           console.log(error);
@@ -566,6 +567,7 @@ function Dashboard() {
                   </Geographies>
                   </ZoomableGroup>
                 </ComposableMap>{" "} */}
+                {/* eslint-disable-next-line*/}
                 <object
                   type="text/html"
                   data="https://www.eia.gov/opendata/embed/iframe.php?geoset_id=INTL.53-1-TBPD.M&map=world&regions=WLD&relation_mode=line%22"
