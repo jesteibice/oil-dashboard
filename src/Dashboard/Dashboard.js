@@ -72,7 +72,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#232554",
     marginTop: "0.7em",
     borderRadius: "0.3em",
-    // letterSpacing: "0.17px",
     marginLeft: 0,
     marginRight: 0,
     marginBottom: 0,
@@ -82,8 +81,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "normal",
     fontSize: "21px",
     lineHeight: "25px",
-
-    // letter-spacing: 0.02em;
   },
 
   papermidmid: {
@@ -122,7 +119,6 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 0,
     paddingLeft: "2em",
     paddingRight: "2em",
-    // paddingBottom: 0,
     minHeight: "5vh",
   },
   paper2: {
@@ -133,12 +129,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#232554",
     marginTop: "0",
     borderRadius: "0.3em",
-    // letterSpacing: "0.17px",
-    // lineHeight: "44px",
     marginLeft: 0,
     marginRight: 0,
     marginBottom: "2.2vh",
-    // flexGrow: 5,
     minHeight: "16.7vh",
     fontFamily: "Avenir Next",
     fontStyle: "normal",
@@ -154,7 +147,6 @@ const useStyles = makeStyles((theme) => ({
     color: "#878ECA",
     position: "relative",
     backgroundColor: "#232554",
-    // marginTop: "0",
     marginTop: "0px",
 
     borderRadius: "0.3em",
@@ -185,9 +177,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
     marginRight: 0,
     marginBottom: "0px",
-    // flexGrow: 5,
     minHeight: "39vh",
-    // minHeight: "38.5vh",
   },
   boxc: {
     minHeight: "41.6vh",
